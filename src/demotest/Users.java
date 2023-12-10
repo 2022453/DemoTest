@@ -16,20 +16,45 @@ public class Users {
     private String surname_name;
     private String day_of_birthday;
     private String address;
+    private String UserName;
+    private String Password;
     private double gross_income;
 
-    public Users(String first_name, String surname_name, String day_of_birthday, String address, double gross_income) {
+    public Users(String first_name, String surname_name, String day_of_birthday, String address, double gross_income, String UserName, String Password) {
         this.first_name = first_name;
         this.surname_name = surname_name;
         this.day_of_birthday = day_of_birthday;
         this.address = address;
         this.gross_income = gross_income;
-        userID = userID;
+        this.UserName = UserName;
+        this.Password = (Password != null) ? Password : "";
+         userID = userID;
        if (user_id <= userID) {
             user_id = userID + 1;
         }
+      
     }
 
+    public Users(int userID, String first_name, String surname_name, String day_of_birthday, String UserName) {
+        this.userID = userID;
+        this.first_name = first_name;
+        this.surname_name = surname_name;
+        this.day_of_birthday = day_of_birthday;
+        this.UserName = UserName;
+    }
+    
+     public Users(int userID, String first_name, String surname_name, String day_of_birthday, String UserName, String Password) {
+        this.userID = userID;
+        this.first_name = first_name;
+        this.surname_name = surname_name;
+        this.day_of_birthday = day_of_birthday;
+        this.UserName = UserName;
+        this.Password = (Password != null) ? Password : "";
+    }
+
+
+    
+    
     public static int getUser_id() {
         return user_id;
     }
@@ -82,9 +107,27 @@ public class Users {
         return gross_income;
     }
 
-    public void setGross_income(double gross_income) {
-        this.gross_income = gross_income;
+    public String getUserName() {
+        return UserName;
+    }
+
+    public void setUserName(String UserName) {
+        this.UserName = UserName;
+    }
+
+   public String getPassword() {
+    return (Password != null) ? Password : "";
+}
+
+
+    public void setPassword(String Password) {
+        this.Password = Password;
     }
     
     
+
+    public void setGross_income(double gross_income) {
+        this.gross_income = gross_income;
+    }
 }
+
