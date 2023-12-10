@@ -19,21 +19,27 @@ public class DemoTest {
         // TODO code application logic here
         
         
-        Users user1 = new Users("Diogo", "Lemos", "1988-06-17", "Bow Street, 105" , 2000.90);
+//        Users user1 = new Users("Diogo", "Lemos", "1988-06-17", "Bow Street, 105" , 2000.90);
+//        
+//        
+//          //Adding p1 to the database
+//        DatabaseWriter dbw = new DatabaseWriter();
+//        if (dbw.addUser(user1)) {
+//            System.out.println("user1 added");
+//            
+//            Users user2 = new Users("Paulo", "Machado", "1997-08-07", "North Circular", 2000.90);
+//            
+//             DatabaseWriter dbw1 = new DatabaseWriter();
+//        if (dbw1.addUser(user2)) {
+//            System.out.println("user2 added");
+//        }
         
-        
-          //Adding p1 to the database
-        DatabaseWriter dbw = new DatabaseWriter();
-        if (dbw.addUser(user1)) {
-            System.out.println("user1 added");
+         Users user3 = new Users("Fabiana", "Nunes", "1985-03-11", "Cows Lane", 3000.90);
             
-            Users user2 = new Users("Paulo", "Machado", "1997-08-07", "North Circular", 2000.90);
-            
-             DatabaseWriter dbw1 = new DatabaseWriter();
-        if (dbw1.addUser(user2)) {
-            System.out.println("user2 added");
+             DatabaseWriter dbw3 = new DatabaseWriter();
+        if (dbw3.addUser(user3)) {
+            System.out.println("user3 added");
         }
         }
     }
         
-}
