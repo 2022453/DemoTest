@@ -12,6 +12,10 @@ public class UserData extends Users {
     
     private double tax_credits;
     private double tax_owned;
+
+    public UserData(String first_name, String surname_name, String day_of_birthday, String address, double gross_income, String UserName, String Password) {
+        super(first_name, surname_name, day_of_birthday, address, gross_income, UserName, Password);
+    }
     
     
 
@@ -22,16 +26,12 @@ public class UserData extends Users {
     public double getTax_owned() {
         return tax_owned;
     }
-    
-    
 
-    
-    
-    public UserData(String first_name, String surname_name, String day_of_birthday, String address, double gross_income) {
-        super(first_name, surname_name, day_of_birthday, address, gross_income);
-        this.tax_credits = tax_credits;
-        this.tax_owned = tax_owned;
-    }
-    
-    
+  
+//    
+//    public UserData(String first_name, String surname_name, String day_of_birthday, String address, double gross_income) {
+//        super(first_name, surname_name, day_of_birthday, address, gross_income);
+//        this.tax_credits = tax_credits;
+//        this.tax_owned = tax_owned;
+//    }
 }

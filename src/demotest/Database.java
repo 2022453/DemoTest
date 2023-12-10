@@ -4,6 +4,8 @@
  */
 package demotest;
 
+import java.sql.ResultSet;
+
 /**
  *
  * @author paulooliveira
@@ -19,6 +21,8 @@ public abstract class  Database {
     protected final static String TABLE_NAME3 = "taxResults";
    // jdbc:mysql://localhost/hospital
     protected final static String DB_URL = DB_BASE_URL + "/" + DB_NAME;
+    
+   
     
 }
 
