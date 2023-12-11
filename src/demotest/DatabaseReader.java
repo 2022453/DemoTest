@@ -80,6 +80,29 @@ public Users getUserByUsername(String username) throws SQLException {
         return user;
     }
 
+    public UserData getUserDataByUserID(int userID) throws SQLException {
+        String query = "SELECT * FROM " + TABLE_NAME3 + " WHERE user_id = ?";
+        try (
+            Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(query)
+        ) {
+            preparedStatement.setInt(1, userID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                double taxCredits = resultSet.getDouble("tax_credits");
+                double taxOwned = resultSet.getDouble("tax_owned");
+                String firstName = resultSet.getString("first_name");
+                String surnameName = resultSet.getString("surname_name");
+                double grossIncome = resultSet.getDouble("gross_income");
+
+                // Create and return a new UserData object
+                return new UserData(taxCredits, taxOwned, userID, firstName, surnameName, grossIncome);
+            }
+        }
+        throw new SQLException("User data not found in the new table");
+    }
+
     public static double getIncomeFromDatabase(String username) throws SQLException {
         String query = "SELECT gross_income FROM users WHERE username = ?";
         try (

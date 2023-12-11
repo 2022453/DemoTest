@@ -49,7 +49,7 @@ public class DatabaseWriter extends Database {
     
     }
             
-               public boolean addResults(UserData userData) throws SQLException {
+               public boolean addResults1(UserData userData) throws SQLException {
         try(
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement stmt = conn.createStatement();  
@@ -66,7 +66,28 @@ public class DatabaseWriter extends Database {
         
     }
                
-                   public boolean updateUser(Users user) {
+               public boolean addResults(UserData userData) throws SQLException {
+    try (
+        Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO " + TABLE_NAME3 + " VALUES (?, ?, ?, ?, ?, ?)");
+    ) {
+        stmt.setInt(1, userData.getUserID());
+        stmt.setString(2, userData.getFirst_name());
+        stmt.setString(3, userData.getSurname_name());
+        stmt.setDouble(4, userData.getGross_income());
+        stmt.setDouble(5, userData.getTax_credits());
+        stmt.setDouble(6, userData.getTax_owned());
+
+        stmt.executeUpdate();
+        return true;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+
+               
+                   public boolean updateUserAdmin(Users user) {
         try (
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             PreparedStatement stmt = conn.prepareStatement(
@@ -86,6 +107,31 @@ public class DatabaseWriter extends Database {
             return false; // Update failed
         }
     }
+                   
+                   public boolean updateUser(Users user) {
+    try (
+        Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+        PreparedStatement stmt = conn.prepareStatement(
+                "UPDATE " + TABLE_NAME2 + " SET first_name = ?, surname_name = ?, day_of_birthday = ?, address = ?, gross_income = ?, username = ?, password = ? WHERE user_id = ?"
+        )
+    ) {
+        stmt.setString(1, user.getFirst_name());
+        stmt.setString(2, user.getSurname_name());
+        stmt.setString(3, user.getDay_of_birthday());
+        stmt.setString(4, user.getAddress());
+        stmt.setDouble(5, user.getGross_income());
+        stmt.setString(6, user.getUserName());
+        stmt.setString(7, user.getPassword());
+        stmt.setInt(8, user.getUserID());
+
+        int rowsAffected = stmt.executeUpdate();
+
+        return rowsAffected > 0; // If rowsAffected is greater than 0, the update was successful
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false; // Update failed
+    }
+}
                    
     
     // Other methods...

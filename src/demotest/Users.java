@@ -19,6 +19,7 @@ public class Users {
     private String UserName;
     private String Password;
     private double gross_income;
+  
 
     public Users(String first_name, String surname_name, String day_of_birthday, String address, double gross_income, String UserName, String Password) {
         this.first_name = first_name;
@@ -42,6 +43,15 @@ public class Users {
         this.day_of_birthday = day_of_birthday;
         this.UserName = UserName;
     }
+
+    public Users(int userID, String first_name, String surname_name, double gross_income) {
+        this.userID = userID;
+        this.first_name = first_name;
+        this.surname_name = surname_name;
+        this.gross_income = gross_income;
+    }
+    
+    
     
      public Users(int userID, String first_name, String surname_name, String day_of_birthday, String UserName, String Password) {
         this.userID = userID;

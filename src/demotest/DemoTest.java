@@ -203,7 +203,7 @@ public class DemoTest {
 
         // Update the modified information in the database
         DatabaseWriter dbWriter = new DatabaseWriter();
-        if (dbWriter.updateUser(adminUser)) {
+        if (dbWriter.updateUserAdmin(adminUser)) {
             System.out.println("Admin information updated successfully!");
         } else {
             System.out.println("Failed to update admin information.");
@@ -309,8 +309,8 @@ case 4:
 while (userLoggedIn) {
     System.out.println("Options for regular user:");
     System.out.println("1 - Modify Your Information");
-    System.out.println("2 - Perform Income Calculation");
-    System.out.println("3 - Save to Database");
+    System.out.println("2 - Perform Income Calculation and save!");
+    System.out.println("3 - Check results");
     System.out.println("4 - Logout");
 
     int userOption = myKB.nextInt();
@@ -380,6 +380,20 @@ UserActivityLogger.logActivity(enteredUserName, "Modified user information");
     
      case 2:
     try {
+        
+//         Users user3 = dbReader.getUserByUsername(enteredUserName);
+//
+//        // Retrieve income from the database
+//        double income = databaseReader.getIncomeFromDatabase(enteredUserName);
+//
+//        // Example usage of the TaxCalculator interface and IrishTaxCalculator implementation
+//        TaxCalculator taxCalculator = new IrishTaxCalculator();
+//
+//        // Calculate income tax considering tax credit
+//        double tax = taxCalculator.calculateIncomeTax(income);
+//
+//        // Create a new UserData object with the calculated values
+//        UserData userData = new UserData(tax, 0, user.getUserID(), user.getFirst_name(), user.getSurname_name(), income);
         // Retrieve income from the database (replace "enteredUserName" with the actual username)
         double income = getIncomeFromDatabase(enteredUserName);
 
@@ -388,6 +402,17 @@ UserActivityLogger.logActivity(enteredUserName, "Modified user information");
 
         // Calculate income tax considering tax credit
         double tax = taxCalculator.calculateIncomeTax(income);
+        
+             // Create a new UserData object with the calculated values
+        UserData userData = new UserData(3550, tax, user.getUserID(), user.getFirst_name(), user.getSurname_name(), income);
+//         Retrieve income from the database (replace "enteredUserName" with the actual username)
+
+            DatabaseWriter dbWriter = new DatabaseWriter();
+            if (dbWriter.addResults(userData)) {
+                System.out.println("User information updated successfully!");
+            } else {
+                System.out.println("Failed to update user information.");
+            }
 
         // Display the result
         System.out.println("Your income tax after tax credit is: €" + tax);
@@ -398,14 +423,25 @@ UserActivityLogger.logActivity(enteredUserName, "Modified user information");
 
 
         case 3:
-            // Save to Database
-            DatabaseWriter dbWriter = new DatabaseWriter();
-            if (dbWriter.updateUser(user)) {
-                System.out.println("User information updated successfully!");
-            } else {
-                System.out.println("Failed to update user information.");
-            }
-            break;
+    try {
+        // Retrieve user information from the database
+        Users user2 = dbReader.getUserByUsername(enteredUserName);
+
+        // Retrieve results from the new table
+        UserData userData = dbReader.getUserDataByUserID(user.getUserID());
+
+        // Print the user data
+        System.out.println("User ID: " + userData.getUserID());
+        System.out.println("First Name: " + userData.getFirst_name());
+        System.out.println("Surname: " + userData.getSurname_name());
+        System.out.println("Gross Income: " + userData.getGross_income());
+        System.out.println("Tax Credits: " + userData.getTax_credits());
+        System.out.println("Tax Owned: " + userData.getTax_owned());
+
+    } catch (SQLException e) {
+        System.out.println("Error retrieving user information or results from the database: " + e.getMessage());
+    }
+    break;
 
         case 4:
             // Logout
