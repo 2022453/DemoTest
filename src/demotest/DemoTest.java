@@ -22,7 +22,11 @@ public class DemoTest {
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
         
+<<<<<<< HEAD
+        
+=======
 //        
+>>>>>>> db729df2de1cc3b1f35b09189335deb7bddc7b51
 //        Users user1 = new Users("Diogo", "Lemos", "1988-06-17", "Bow Street, 105" , 2000.90);
 //        
 //        
@@ -37,6 +41,14 @@ public class DemoTest {
 //        if (dbw1.addUser(user2)) {
 //            System.out.println("user2 added");
 //        }
+<<<<<<< HEAD
+        
+         Users user3 = new Users("Fabiana", "Nunes", "1985-03-11", "Cows Lane", 3000.90);
+            
+             DatabaseWriter dbw3 = new DatabaseWriter();
+        if (dbw3.addUser(user3)) {
+            System.out.println("user3 added");
+=======
 //        }
 //    }
 
@@ -90,6 +102,7 @@ public class DemoTest {
             } catch (NumberFormatException e) {
                 System.out.print("Invalid input. Please enter a number: ");
             }
+>>>>>>> db729df2de1cc3b1f35b09189335deb7bddc7b51
         }
 
         // Process user choice
@@ -375,6 +388,8 @@ UserActivityLogger.logActivity(enteredUserName, "Modified user information");
         } else {
             System.out.println("Failed to update user information.");
         
+<<<<<<< HEAD
+=======
     }
     break;
     
@@ -562,3 +577,4 @@ UserActivityLogger.logActivity(enteredUserName, "Modified user information");
     
     }
 }
+>>>>>>> db729df2de1cc3b1f35b09189335deb7bddc7b51
